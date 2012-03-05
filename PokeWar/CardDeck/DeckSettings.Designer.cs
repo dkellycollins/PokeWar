@@ -25,7 +25,7 @@ namespace CardDeck {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("pics/CardBack")]
         public string BackImgSource {
             get {
                 return ((string)(this["BackImgSource"]));
@@ -34,19 +34,19 @@ namespace CardDeck {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string FrontImgDir {
+        [global::System.Configuration.DefaultSettingValueAttribute("pics/CardFront")]
+        public string FrontImgBaseName {
             get {
-                return ((string)(this["FrontImgDir"]));
+                return ((string)(this["FrontImgBaseName"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string FrontImgBaseName {
+        [global::System.Configuration.DefaultSettingValueAttribute(".jpg")]
+        public string ImageExtention {
             get {
-                return ((string)(this["FrontImgBaseName"]));
+                return ((string)(this["ImageExtention"]));
             }
         }
     }

@@ -17,7 +17,11 @@ namespace CardDeck
             {
                 for(int a = 1; a <= 13; a++)
                 {
-                    deck[(i * a) - 1] = new Card((Suit)i, a);
+                    Card c = new Card((Suit)i, a);
+                    c.SetImageSources(
+                        DeckSettings.Default.FrontImgBaseName + c.ToString() + DeckSettings.Default.ImageExtention, 
+                        DeckSettings.Default.BackImgSource + DeckSettings.Default.ImageExtention);
+                    deck[(i * a) - 1] = c;
                 }
             }
             topCard = 52;

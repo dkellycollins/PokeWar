@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{E3D4C823-52F1-46EA-9A44-488C3793206D}</ProjectGuid>
+    <ProjectGuid>{182AFBAD-0921-47C3-B91A-E854B405BAE6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CardDeck</RootNamespace>
-    <AssemblyName>CardDeck</AssemblyName>
+    <RootNamespace>PokeWarEngine</RootNamespace>
+    <AssemblyName>PokeWarEngine</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,21 +40,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Card.cs" />
-    <Compile Include="CardDeck.cs" />
-    <Compile Include="DeckSettings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>DeckSettings.settings</DependentUpon>
-    </Compile>
+    <Compile Include="ConsoleUI.cs" />
+    <Compile Include="Player.cs" />
+    <Compile Include="PokeWar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-    <None Include="DeckSettings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>DeckSettings.Designer.cs</LastGenOutput>
-    </None>
+    <ProjectReference Include="..\PokeWar\CardDeck\CardLib.csproj">
+      <Project>{E3D4C823-52F1-46EA-9A44-488C3793206D}</Project>
+      <Name>CardLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

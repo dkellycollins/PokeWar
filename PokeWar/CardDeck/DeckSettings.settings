@@ -3,13 +3,13 @@
   <Profiles />
   <Settings>
     <Setting Name="BackImgSource" Type="System.String" Scope="Application">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="FrontImgDir" Type="System.String" Scope="Application">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">pics/CardBack</Value>
     </Setting>
     <Setting Name="FrontImgBaseName" Type="System.String" Scope="Application">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">pics/CardFront</Value>
+    </Setting>
+    <Setting Name="ImageExtention" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">.jpg</Value>
     </Setting>
   </Settings>
 </SettingsFile>

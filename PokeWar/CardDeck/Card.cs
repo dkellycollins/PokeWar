@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Drawing;
 
 namespace CardDeck
 {
@@ -18,6 +19,8 @@ namespace CardDeck
         public Suit Suit { get; private set; }
         public int Rank { get; private set; }
         public bool FaceUp { get; set; }
+        public Image FrontImage { get; private set; }
+        public Image BackImage { get; private set; }
         private string frontImgSource;
         private string backImgSource;
 
@@ -35,7 +38,22 @@ namespace CardDeck
             backImgSource = null;
         }
 
-
+        /// <summary>
+        /// Creates a card with the images.
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="r"></param>
+        /// <param name="f"></param>
+        /// <param name="b"></param>
+        public Card(Suit s, int r, string f, string b)
+        {
+            Suit = s;
+            Rank = r;
+            FaceUp = false;
+            frontImgSource = f;
+            backImgSource = b;
+            loadImages();
+        }
 
         /// <summary>
         /// Copy constructor.
@@ -46,18 +64,31 @@ namespace CardDeck
             this.Suit = c.Suit;
             this.Rank = c.Rank;
             this.FaceUp = c.FaceUp;
+            this.frontImgSource = c.frontImgSource;
+            this.backImgSource = c.backImgSource;
+            loadImages();
         }
 
-        public Image GetFrontImage()
+        /// <summary>
+        /// Sets the image sources and attempts to load the images.
+        /// </summary>
+        /// <param name="f"></param>
+        /// <param name="b"></param>
+        public void SetImageSources(string f, string b)
         {
-            return null;
+            frontImgSource = f;
+            backImgSource = b;
+            loadImages();
         }
 
-        public Image GetBackImage()
+        private void loadImages()
         {
-            return null;
-        }
+            if (frontImgSource != null)
+                FrontImage = Image.FromFile(frontImgSource);
 
+            if (backImgSource != null)
+                BackImage = Image.FromFile(backImgSource);
+        }
 
 #region Override
 
