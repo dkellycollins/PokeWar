@@ -45,12 +45,6 @@
     <Compile Include="PokeWar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\PokeWar\CardDeck\CardLib.csproj">
-      <Project>{E3D4C823-52F1-46EA-9A44-488C3793206D}</Project>
-      <Name>CardLib</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

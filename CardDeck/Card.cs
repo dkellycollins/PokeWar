@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Drawing;
+﻿using System.Drawing;
+using System.IO;
 
 namespace CardDeck
 {
@@ -41,10 +38,10 @@ namespace CardDeck
         /// <summary>
         /// Creates a card with the images.
         /// </summary>
-        /// <param name="s"></param>
-        /// <param name="r"></param>
-        /// <param name="f"></param>
-        /// <param name="b"></param>
+        /// <param name="s">Suit</param>
+        /// <param name="r">Rank</param>
+        /// <param name="f">Front Image URL</param>
+        /// <param name="b">Back Image URL</param>
         public Card(Suit s, int r, string f, string b)
         {
             Suit = s;
@@ -72,8 +69,8 @@ namespace CardDeck
         /// <summary>
         /// Sets the image sources and attempts to load the images.
         /// </summary>
-        /// <param name="f"></param>
-        /// <param name="b"></param>
+        /// <param name="f">Front Image URL</param>
+        /// <param name="b">Back Image URL</param>
         public void SetImageSources(string f, string b)
         {
             frontImgSource = f;
@@ -83,14 +80,21 @@ namespace CardDeck
 
         private void loadImages()
         {
-            if (frontImgSource != null)
-                FrontImage = Image.FromFile(frontImgSource);
-
-            if (backImgSource != null)
-                BackImage = Image.FromFile(backImgSource);
+            try
+            {
+                if (frontImgSource != null)
+                    FrontImage = Image.FromFile(frontImgSource);
+            }
+            catch (FileNotFoundException e) { FrontImage = null; }
+            try
+            {
+                if (backImgSource != null)
+                    BackImage = Image.FromFile(backImgSource);
+            }
+            catch (FileNotFoundException e) { BackImage = null; }
         }
 
-#region Override
+#region Overrides
 
         public override bool Equals(object obj)
         {
