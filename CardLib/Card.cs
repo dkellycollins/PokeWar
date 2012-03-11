@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using System.IO;
 
-namespace CardDeck
+namespace CardLib
 {
     public enum Suit
     {
@@ -115,6 +115,9 @@ namespace CardDeck
                 return true;
             return false;
         }
+
+        //TODO
+        //public override int GetHashCode() {}
 
         private const string[] suitConverter = { "H", "D", "C", "S" };
         private const string[] rankConverter = { "A", "2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K" };
