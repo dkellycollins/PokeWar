@@ -14,6 +14,7 @@ namespace PokeWar
         public MainForm()
         {
             InitializeComponent();
+            this.Controls.Add(StateManager.Instance.GetNextState());
         }
     }
 }

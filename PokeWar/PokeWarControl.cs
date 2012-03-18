@@ -9,16 +9,14 @@ using System.Windows.Forms;
 
 namespace PokeWar
 {
-    public partial class TitleControl : UserControl
+    public partial class PokeWarControl : UserControl
     {
-        public TitleControl()
+        public delegate void ControlCompleteHandler();
+        public event ControlCompleteHandler ContolComplete;
+
+        public PokeWarControl()
         {
             InitializeComponent();
-        }
-
-        private void playButton_Click(object sender, EventArgs e)
-        {
-            
         }
     }
 }

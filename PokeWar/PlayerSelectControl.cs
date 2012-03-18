@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace PokeWar
 {
-    public partial class PlayerSelectControl : UserControl
+    public partial class PlayerSelectControl : PokeWarControl
     {
         public PlayerSelectControl()
         {

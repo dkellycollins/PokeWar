@@ -116,8 +116,8 @@ namespace CardDeck
             return false;
         }
 
-        private const string[] suitConverter = { "H", "D", "C", "S" };
-        private const string[] rankConverter = { "A", "2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K" };
+        private static string[] suitConverter = { "H", "D", "C", "S" };
+        private static string[] rankConverter = { "A", "2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K" };
 
         public override string ToString()
         {

@@ -64,6 +64,12 @@
     <Compile Include="PlayerSelectControl.Designer.cs">
       <DependentUpon>PlayerSelectControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="PokeWarControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PokeWarControl.Designer.cs">
+      <DependentUpon>PokeWarControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StateManager.cs" />
@@ -82,6 +88,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="TitleControl.resx">
+      <DependentUpon>TitleControl.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
