@@ -12,11 +12,25 @@ namespace PokeWar
     public partial class PokeWarControl : UserControl
     {
         public delegate void ControlCompleteHandler();
-        public event ControlCompleteHandler ContolComplete;
+        public event ControlCompleteHandler ControlComplete;
 
         public PokeWarControl()
         {
             InitializeComponent();
+        }
+
+        /// <summary>
+        /// Clears the data in the control.
+        /// </summary>
+        public virtual void Clean()
+        {
+
+        }
+
+        protected void OnControlComplete()
+        {
+            if (ControlComplete != null)
+                ControlComplete();
         }
     }
 }

@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace PokeWar
 {
-    public partial class TitleControl : UserControl
+    public partial class TitleControl : PokeWarControl
     {
         public TitleControl()
         {
@@ -18,7 +18,7 @@ namespace PokeWar
 
         private void playButton_Click(object sender, EventArgs e)
         {
-            
+            OnControlComplete();
         }
     }
 }

@@ -14,7 +14,32 @@ namespace PokeWar
         public MainForm()
         {
             InitializeComponent();
-            this.Controls.Add(StateManager.Instance.GetNextState());
         }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            PokeWarControl control = UIManager.Instance.GetNextControl();
+            control.Location = new Point(0, 0);
+            control.Size = new Size(this.Width, this.Height);
+            control.ControlComplete += MainForm_ControlComplete;
+            this.Controls.Add(control);
+        }
+
+        private void MainForm_Resize(object sender, EventArgs e)
+        {
+            this.Controls[0].Size = new Size(this.Width, this.Height);
+        }
+
+        private void MainForm_ControlComplete()
+        {
+            this.Controls.RemoveAt(0);
+
+            PokeWarControl control = UIManager.Instance.GetNextControl();
+            control.Location = new Point(0, 0);
+            control.Size = new Size(this.Width, this.Height);
+            control.ControlComplete += MainForm_ControlComplete;
+            this.Controls.Add(control);
+        }
+
     }
 }

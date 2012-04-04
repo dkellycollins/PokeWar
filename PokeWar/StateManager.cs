@@ -6,36 +6,59 @@ using System.Windows.Forms;
 
 namespace PokeWar
 {
-    public class StateManager
+    /// <summary>
+    /// Controls the order of the UserControls and manages shared UI resources
+    /// </summary>
+    public class UIManager
     {
-        public static StateManager Instance = new StateManager();
+        public static UIManager Instance = new UIManager();
+
+        private UIManager() { }
+
+        #region Controls
+        public PokeWarControl[] Controls = {
+            new TitleControl(),
+            new PlayerSelectControl(),
+            new BattleControl()
+        };
 
         private enum State
         {
-            title,
-            player_select,
-            battle
+            title = 0,
+            player_select = 1,
+            battle = 2
         }
-        private State curState;
+        private State curState = State.battle;
 
-        private StateManager() {}
-
-        public UserControl GetNextState()
+        public PokeWarControl GetNextControl()
         {
             switch (curState)
             {
-                case State.title:
-                    curState = State.player_select;
-                    return new PlayerSelectControl();
                 case State.player_select:
+                    Controls[(int)curState].Clean();
                     curState = State.battle;
-                    return new BattleControl();
+                    return Controls[(int)curState];
                 case State.battle:
-                default:
+                    Controls[(int)curState].Clean();
                     curState = State.title;
-                    return new TitleControl();
+                    return Controls[(int)curState];
+                case State.title:
+                default:
+                    Controls[(int)curState].Clean();
+                    curState = State.player_select;
+                    return Controls[(int)curState];
             }
         }
+        #endregion
 
+        #region Game
+        public PokeWarEngine.PokeWar Game { get; private set; }
+
+        public PokeWarEngine.PokeWar CreateNewGame(Player user, Player computer)
+        {
+            Game = new PokeWarEngine.PokeWar(user, computer);
+            return Game;
+        }
+        #endregion
     }
 }

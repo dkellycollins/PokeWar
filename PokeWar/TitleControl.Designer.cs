@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TitleControl));
             this.playButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // playButton
             // 
-            this.playButton.Location = new System.Drawing.Point(41, 88);
+            this.playButton.Location = new System.Drawing.Point(202, 240);
             this.playButton.Name = "playButton";
             this.playButton.Size = new System.Drawing.Size(75, 23);
             this.playButton.TabIndex = 0;
@@ -45,8 +46,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.Controls.Add(this.playButton);
             this.Name = "TitleControl";
+            this.Size = new System.Drawing.Size(485, 355);
+            this.Resize += new System.EventHandler(this.TitleControl_Resize);
             this.ResumeLayout(false);
 
         }
