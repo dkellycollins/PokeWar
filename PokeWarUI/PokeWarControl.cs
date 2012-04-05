@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace PokeWar
+namespace PokeWarUI
 {
     public partial class PokeWarControl : UserControl
     {
