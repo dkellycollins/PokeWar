@@ -6,8 +6,8 @@ namespace GameEngine
     public class PokeWar
     {
         private CardDeck _deck;
-        private Player _player1;
-        private Player _player2;
+        public Player Player1 { get; private set; }
+        public Player Player2 { get; private set; }
 
         public List<Card> GetAceCards()
         {
@@ -23,10 +23,9 @@ namespace GameEngine
         public PokeWar(Player p1, Player p2)
         {
             _deck = new CardDeck();
-            //TODO remove the 4 ace cards
             GetAceCards();
-            _player1 = p1;
-            _player2 = p2;
+            Player1 = p1;
+            Player2 = p2;
         }
 
         public void Setup()
@@ -34,9 +33,14 @@ namespace GameEngine
 
         }
 
-        public void PlayTurn()
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="UserSelectedCard"></param>
+        /// <param name="CompSelectedCard"></param>
+        public void PlayRound(Card UserSelectedCard, Card CompSelectedCard)
         {
-
+            throw new System.NotImplementedException();
         }
 
         public void Cleanup()

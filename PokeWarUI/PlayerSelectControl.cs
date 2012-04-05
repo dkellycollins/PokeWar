@@ -46,8 +46,8 @@ namespace PokeWarUI
 
         private void Player1btn_Click(object sender, EventArgs e)
         {
-            if (DialogThread.IsAlive)
-                DialogThread.Abort();
+            //if (DialogThread.IsAlive)
+            //    DialogThread.Abort();
 
             GameData.CreateNewGame(
                 new Player(trainerNames[0], new Card(Suit.Club, 13)),
@@ -58,8 +58,8 @@ namespace PokeWarUI
 
         private void Player2btn_Click(object sender, EventArgs e)
         {
-            if (DialogThread.IsAlive)
-                DialogThread.Abort();
+            //if (DialogThread.IsAlive)
+            //    DialogThread.Abort();
 
             GameData.CreateNewGame(
                 new Player(trainerNames[1], new Card(Suit.Diamond, 13)),
@@ -70,8 +70,8 @@ namespace PokeWarUI
 
         private void Player3btn_Click(object sender, EventArgs e)
         {
-            if (DialogThread.IsAlive)
-                DialogThread.Abort();
+            //if (DialogThread.IsAlive)
+            //    DialogThread.Abort();
 
             GameData.CreateNewGame(
                 new Player(trainerNames[2], new Card(Suit.Heart, 13)),
@@ -82,8 +82,8 @@ namespace PokeWarUI
 
         private void Player4btn_Click(object sender, EventArgs e)
         {
-            if (DialogThread.IsAlive)
-                DialogThread.Abort();
+            //if (DialogThread.IsAlive)
+            //    DialogThread.Abort();
 
             GameData.CreateNewGame(
                 new Player(trainerNames[3], new Card(Suit.Heart, 13)),
