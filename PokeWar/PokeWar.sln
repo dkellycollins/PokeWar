@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokeWarUI", "PokeWarUI.cspr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokeWarEngine", "..\PokeWarEngine\PokeWarEngine.csproj", "{182AFBAD-0921-47C3-B91A-E854B405BAE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardLib", "..\CardDeck\CardLib.csproj", "{E3D4C823-52F1-46EA-9A44-488C3793206D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardLib", "..\CardLib\CardLib.csproj", "{E3D4C823-52F1-46EA-9A44-488C3793206D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
