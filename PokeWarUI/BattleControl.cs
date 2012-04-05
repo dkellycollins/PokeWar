@@ -7,18 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace PokeWar
+namespace PokeWarUI
 {
-    public partial class TitleControl : PokeWarControl
+    public partial class BattleControl : PokeWarControl
     {
-        public TitleControl()
+        public BattleControl()
         {
             InitializeComponent();
-        }
-
-        private void playButton_Click(object sender, EventArgs e)
-        {
-            OnControlComplete();
         }
     }
 }

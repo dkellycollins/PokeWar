@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace PokeWar
+namespace PokeWarUI
 {
     /// <summary>
     /// Controls the order of the UserControls and manages shared UI resources
@@ -15,7 +15,6 @@ namespace PokeWar
 
         private UIManager() { }
 
-        #region Controls
         public PokeWarControl[] Controls = {
             new TitleControl(),
             new PlayerSelectControl(),
@@ -49,16 +48,5 @@ namespace PokeWar
                     return Controls[(int)curState];
             }
         }
-        #endregion
-
-        #region Game
-        public PokeWarEngine.PokeWar Game { get; private set; }
-
-        public PokeWarEngine.PokeWar CreateNewGame(Player user, Player computer)
-        {
-            Game = new PokeWarEngine.PokeWar(user, computer);
-            return Game;
-        }
-        #endregion
     }
 }

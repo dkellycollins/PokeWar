@@ -1,4 +1,4 @@
-﻿namespace PokeWar
+﻿namespace PokeWarUI
 {
     partial class MainForm
     {
