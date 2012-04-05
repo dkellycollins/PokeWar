@@ -45,22 +45,22 @@ namespace CardLib
                     deck[j] = temp;
                 }
             }
-            topCard = 51;
-            //Finds the Aces in the deck and swaps them with the top four Cards.
-            for (int i = topCard; i >= topCard - 4; i--)
-            {
-                int index = deck.FindIndex(item => item.Rank.Equals("A"));
-                Card c = deck.Find(item => item.Rank.Equals("A"));
-                Card temp = deck[i];
-                deck[i] = c;
-                deck[index] = temp;
-            }
-            topCard = 51;
         }
 
         public void ReturnAllCards()
         {
             topCard = 51;
+        }
+
+        public Card Find(Suit s, int r)
+        {
+            int index = deck.FindIndex(item => item.Suit.Equals(s) && item.Rank.Equals(r));
+            Card c = deck.Find(item => item.Suit.Equals(s) && item.Rank.Equals(r));
+            Card temp = deck[topCard];
+            deck[topCard] = c;
+            deck[index] = temp;
+            topCard--;
+            return deck[topCard+1];
         }
     }
 }
