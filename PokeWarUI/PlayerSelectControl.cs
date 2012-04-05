@@ -26,7 +26,7 @@ namespace PokeWarUI
         public PlayerSelectControl()
         {
             InitializeComponent();
-            //this.DialogText.Text = oakSpeech;
+            this.DialogText.Text = oakSpeech;
         }
 
         private void PlayerSelectControl_OnShow(object sender, EventArgs e)
@@ -52,7 +52,8 @@ namespace PokeWarUI
             GameData.CreateNewGame(
                 new Player(trainerNames[0], new Card(Suit.Club, 13)),
                 new Player(trainerNames[1], new Card(Suit.Diamond, 13))
-                );
+            );
+            OnControlComplete();
         }
 
         private void Player2btn_Click(object sender, EventArgs e)
@@ -63,7 +64,8 @@ namespace PokeWarUI
             GameData.CreateNewGame(
                 new Player(trainerNames[1], new Card(Suit.Diamond, 13)),
                 new Player(trainerNames[2], new Card(Suit.Heart, 13))
-                );
+            );
+            OnControlComplete();
         }
 
         private void Player3btn_Click(object sender, EventArgs e)
@@ -74,7 +76,8 @@ namespace PokeWarUI
             GameData.CreateNewGame(
                 new Player(trainerNames[2], new Card(Suit.Heart, 13)),
                 new Player(trainerNames[3], new Card(Suit.Spade, 13))
-                );
+            );
+            OnControlComplete();
         }
 
         private void Player4btn_Click(object sender, EventArgs e)
@@ -85,7 +88,8 @@ namespace PokeWarUI
             GameData.CreateNewGame(
                 new Player(trainerNames[3], new Card(Suit.Heart, 13)),
                 new Player(trainerNames[0], new Card(Suit.Spade, 13))
-                );
+            );
+            OnControlComplete();
         }
     }
 }

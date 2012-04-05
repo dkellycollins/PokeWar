@@ -15,12 +15,6 @@ namespace PokeWarUI
 
         private UIManager() { }
 
-        public PokeWarControl[] Controls = {
-            new TitleControl(),
-            new PlayerSelectControl(),
-            new BattleControl()
-        };
-
         private enum State
         {
             title = 0,
@@ -34,18 +28,15 @@ namespace PokeWarUI
             switch (curState)
             {
                 case State.player_select:
-                    Controls[(int)curState].Clean();
                     curState = State.battle;
-                    return Controls[(int)curState];
+                    return new BattleControl();
                 case State.battle:
-                    Controls[(int)curState].Clean();
                     curState = State.title;
-                    return Controls[(int)curState];
+                    return new TitleControl();
                 case State.title:
                 default:
-                    Controls[(int)curState].Clean();
                     curState = State.player_select;
-                    return Controls[(int)curState];
+                    return new PlayerSelectControl();
             }
         }
     }
