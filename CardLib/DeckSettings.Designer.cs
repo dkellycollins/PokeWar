@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CardDeck {
+namespace CardLib {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

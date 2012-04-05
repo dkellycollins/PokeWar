@@ -1,4 +1,4 @@
-﻿namespace CardDeck
+﻿namespace CardLib
 {
     public class CardDeck
     {
