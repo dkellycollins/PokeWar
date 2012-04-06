@@ -32,7 +32,7 @@ namespace CardLib
         }
 
         public void Shuffle(int count)
-        {   //Returns all Cards, the shuffles them count number of times.
+        {
             ReturnAllCards();
             System.Random random = new System.Random();
             for (int a = 0; a < count; a++)
@@ -52,7 +52,7 @@ namespace CardLib
             topCard = 51;
         }
 
-        public Card Find(Suit s, int r)
+        public Card Remove(Suit s, int r)
         {
             int index = deck.FindIndex(item => item.Suit.Equals(s) && item.Rank.Equals(r));
             Card c = deck.Find(item => item.Suit.Equals(s) && item.Rank.Equals(r));
@@ -61,6 +61,12 @@ namespace CardLib
             deck[index] = temp;
             topCard--;
             return deck[topCard+1];
+        }
+
+        //Returns the numbers of cards left in the deck.
+        public int Size()
+        {
+            return topCard;
         }
     }
 }
