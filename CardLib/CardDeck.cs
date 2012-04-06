@@ -19,13 +19,16 @@ namespace CardLib
                     c.SetImageSources(
                         DeckSettings.Default.FrontImgBaseName + c.ToString() + DeckSettings.Default.ImageExtention, 
                         DeckSettings.Default.BackImgSource + DeckSettings.Default.ImageExtention);
-                    deck[(i * a) - 1] = c;
+                    deck.Add(c);
                 }
             }
         }
 
         public Card Draw()
         {
+            if (topCard == 0)
+                throw new InvalidOperationException("There are not cards to draw!");
+
             Card draw = new Card(deck[topCard]);
             topCard--;
             return draw;
@@ -55,12 +58,11 @@ namespace CardLib
         public Card Find(Suit s, int r)
         {
             int index = deck.FindIndex(item => item.Suit.Equals(s) && item.Rank.Equals(r));
-            Card c = deck.Find(item => item.Suit.Equals(s) && item.Rank.Equals(r));
+            Card c = deck[index];
             Card temp = deck[topCard];
             deck[topCard] = c;
             deck[index] = temp;
-            topCard--;
-            return deck[topCard+1];
+            return deck[topCard--];
         }
     }
 }
