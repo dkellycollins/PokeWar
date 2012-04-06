@@ -38,8 +38,8 @@ namespace GameEngine
             //Splits the deck between the players.
             for (int i = _deck.Size(); i >= 0; i-=2)
             {
-                Player1.Hand.Add(_deck.Draw());
-                Player2.Hand.Add(_deck.Draw());
+                Player1.Deal(_deck.Draw());
+                Player2.Deal(_deck.Draw());
             }
         }
 

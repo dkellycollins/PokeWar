@@ -24,6 +24,8 @@ namespace GameEngine
         /// <param name="c"></param>
         public void Deal(Card c)
         {
+            Hand.Add(c);
         }
+
     }
 }
