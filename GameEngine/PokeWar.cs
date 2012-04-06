@@ -14,7 +14,7 @@ namespace GameEngine
             List<Card> aces = new List<Card>(4);
             for (int i = 1; i <= 4; i++)
             {
-                Card c = _deck.Find((Suit)i, 13);
+                Card c = _deck.Remove((Suit)i, 13);
                 aces.Add(c);
             }
             return aces;
@@ -23,14 +23,24 @@ namespace GameEngine
         public PokeWar(Player p1, Player p2)
         {
             _deck = new CardDeck();
-            GetAceCards();
             Player1 = p1;
             Player2 = p2;
         }
 
         public void Setup()
         {
+            //Shuffles the deck thrice.
+            _deck.Shuffle(3);
 
+            //Gets the Aces.
+            List<Card> aces = GetAceCards();
+
+            //Splits the deck between the players.
+            for (int i = _deck.Size(); i >= 0; i-=2)
+            {
+                Player1.Deal(_deck.Draw());
+                Player2.Deal(_deck.Draw());
+            }
         }
 
         /// <summary>
@@ -45,7 +55,9 @@ namespace GameEngine
 
         public void Cleanup()
         {
-
+            Player1.Hand.Equals(null);
+            Player2.Hand.Equals(null);
+            _deck.ReturnAllCards();
         }
     }
 }
