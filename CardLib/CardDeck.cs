@@ -19,7 +19,7 @@ namespace CardLib
                     c.SetImageSources(
                         DeckSettings.Default.FrontImgBaseName + c.ToString() + DeckSettings.Default.ImageExtention, 
                         DeckSettings.Default.BackImgSource + DeckSettings.Default.ImageExtention);
-                    deck[(i * a) - 1] = c;
+                    deck.Add(c);
                 }
             }
         }
