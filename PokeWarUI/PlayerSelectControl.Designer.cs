@@ -41,7 +41,7 @@
             // 
             // Player1btn
             // 
-            this.Player1btn.Location = new System.Drawing.Point(84, 225);
+            this.Player1btn.Location = new System.Drawing.Point(53, 215);
             this.Player1btn.Name = "Player1btn";
             this.Player1btn.Size = new System.Drawing.Size(75, 90);
             this.Player1btn.TabIndex = 0;
@@ -50,7 +50,7 @@
             // 
             // Player2btn
             // 
-            this.Player2btn.Location = new System.Drawing.Point(165, 225);
+            this.Player2btn.Location = new System.Drawing.Point(134, 215);
             this.Player2btn.Name = "Player2btn";
             this.Player2btn.Size = new System.Drawing.Size(75, 90);
             this.Player2btn.TabIndex = 1;
@@ -59,7 +59,7 @@
             // 
             // Player3btn
             // 
-            this.Player3btn.Location = new System.Drawing.Point(246, 225);
+            this.Player3btn.Location = new System.Drawing.Point(215, 215);
             this.Player3btn.Name = "Player3btn";
             this.Player3btn.Size = new System.Drawing.Size(75, 90);
             this.Player3btn.TabIndex = 2;
@@ -68,7 +68,7 @@
             // 
             // Player4btn
             // 
-            this.Player4btn.Location = new System.Drawing.Point(327, 225);
+            this.Player4btn.Location = new System.Drawing.Point(296, 215);
             this.Player4btn.Name = "Player4btn";
             this.Player4btn.Size = new System.Drawing.Size(75, 90);
             this.Player4btn.TabIndex = 3;
@@ -78,7 +78,7 @@
             // OakPic
             // 
             this.OakPic.Image = ((System.Drawing.Image)(resources.GetObject("OakPic.Image")));
-            this.OakPic.Location = new System.Drawing.Point(189, 119);
+            this.OakPic.Location = new System.Drawing.Point(162, 109);
             this.OakPic.Name = "OakPic";
             this.OakPic.Size = new System.Drawing.Size(100, 100);
             this.OakPic.TabIndex = 4;
@@ -86,7 +86,7 @@
             // 
             // DialogText
             // 
-            this.DialogText.Location = new System.Drawing.Point(16, 13);
+            this.DialogText.Location = new System.Drawing.Point(3, 3);
             this.DialogText.Multiline = true;
             this.DialogText.Name = "DialogText";
             this.DialogText.Size = new System.Drawing.Size(455, 87);
@@ -95,7 +95,7 @@
             // OakTitleLbl
             // 
             this.OakTitleLbl.AutoSize = true;
-            this.OakTitleLbl.Location = new System.Drawing.Point(216, 103);
+            this.OakTitleLbl.Location = new System.Drawing.Point(188, 93);
             this.OakTitleLbl.Name = "OakTitleLbl";
             this.OakTitleLbl.Size = new System.Drawing.Size(52, 13);
             this.OakTitleLbl.TabIndex = 6;
