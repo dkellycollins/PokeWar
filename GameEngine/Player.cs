@@ -27,5 +27,9 @@ namespace GameEngine
             Hand.Add(c);
         }
 
+        public Card Play(Card c)
+        {
+            int index = Hand.IndexOf(c);
+        }
     }
 }
