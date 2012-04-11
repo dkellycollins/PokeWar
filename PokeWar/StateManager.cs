@@ -7,5 +7,9 @@ namespace PokeWar
 {
     class StateManager
     {
+        internal System.Windows.Forms.Control GetNextState()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
