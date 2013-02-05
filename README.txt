@@ -1,4 +1,4 @@
-
+Note: This game is going to be revivied and reworked to be a Windows 8 app.
 
 Credit:
 
