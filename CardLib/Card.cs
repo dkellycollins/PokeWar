@@ -3,21 +3,77 @@ using System.IO;
 
 namespace CardLib
 {
+    /// <summary>
+    /// Represents the suit of the cards.
+    /// </summary>
     public enum Suit
     {
         Heart = 1,
         Diamond = 2,
         Club = 3,
-        Spade = 4
+        Spade = 4,
+        Joker = 5
     }
 
+    /// <summary>
+    /// Contains information on a playing card.
+    /// </summary>
     public class Card
     {
+        /// <summary>
+        /// Suit of the card.
+        /// </summary>
         public Suit Suit { get; private set; }
+
+        /// <summary>
+        /// Rank of the card. Ace would be 1 and King is 13.
+        /// </summary>
         public int Rank { get; private set; }
+
+        /// <summary>
+        /// Stores if this card is face up or face down.
+        /// </summary>
         public bool FaceUp { get; set; }
-        public Image FrontImage { get; private set; }
-        public Image BackImage { get; private set; }
+
+        /// <summary>
+        /// Returns the face up image of this card. Note that the image is not cached. Everytime this is called is an io operation.
+        /// </summary>
+        public Image FrontImage
+        {
+            get
+            {
+                try
+                {
+                    return Image.FromFile(frontImgSource);
+                }
+                catch
+                {
+                    return null;
+                    //return DeckSettings.ErrorImage;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Returns the face down image of this card. Note that the image is not cached. Everytime this is called is an io operation.
+        /// </summary>
+        public Image BackImage
+        {
+            get
+            {
+                try
+                {
+                    return Image.FromFile(backImgSource);
+                }
+                catch
+                {
+                    return null;
+                    //return DeckSettings.ErrorImage;
+                }
+            }
+        }
+
+        //Holds the location of the images.
         private string frontImgSource;
         private string backImgSource;
 
@@ -49,7 +105,6 @@ namespace CardLib
             FaceUp = false;
             frontImgSource = f;
             backImgSource = b;
-            loadImages();
         }
 
         /// <summary>
@@ -63,35 +118,17 @@ namespace CardLib
             this.FaceUp = c.FaceUp;
             this.frontImgSource = c.frontImgSource;
             this.backImgSource = c.backImgSource;
-            loadImages();
         }
 
         /// <summary>
-        /// Sets the image sources and attempts to load the images.
+        /// Sets the source for the images.
         /// </summary>
-        /// <param name="f">Front Image URL</param>
-        /// <param name="b">Back Image URL</param>
-        public void SetImageSources(string f, string b)
+        /// <param name="front">Front image URL</param>
+        /// <param name="back">Back image URL</param>
+        internal void SetImageSources(string front, string back)
         {
-            frontImgSource = f;
-            backImgSource = b;
-            loadImages();
-        }
-
-        private void loadImages()
-        {
-            try
-            {
-                if (frontImgSource != null)
-                    FrontImage = Image.FromFile(frontImgSource);
-            }
-            catch (FileNotFoundException e) { FrontImage = null; }
-            try
-            {
-                if (backImgSource != null)
-                    BackImage = Image.FromFile(backImgSource);
-            }
-            catch (FileNotFoundException e) { BackImage = null; }
+            frontImgSource = front;
+            backImgSource = back;
         }
 
 #region Overrides
@@ -124,9 +161,21 @@ namespace CardLib
 
         public override string ToString()
         {
+            string str;
+
             if (FaceUp)
-                return suitConverter[(int)Suit - 1] + rankConverter[Rank - 1];
-            return "XX";
+            {
+                if (Suit == Suit.Joker)
+                    str = "JK";
+                else
+                    str = suitConverter[(int)Suit - 1] + rankConverter[Rank - 1];
+            }
+            else
+            {
+                str = "XX";
+            }
+
+            return str;
         }
 
 #endregion

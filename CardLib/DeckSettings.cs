@@ -1,28 +1,15 @@
-﻿namespace CardLib {
-    
-    
-    // This class allows you to handle specific events on the settings class:
-    //  The SettingChanging event is raised before a setting's value is changed.
-    //  The PropertyChanged event is raised after a setting's value is changed.
-    //  The SettingsLoaded event is raised after the setting values are loaded.
-    //  The SettingsSaving event is raised before the setting values are saved.
-    internal sealed partial class DeckSettings {
-        
-        public DeckSettings() {
-            // // To add event handlers for saving and changing settings, uncomment the lines below:
-            //
-            // this.SettingChanging += this.SettingChangingEventHandler;
-            //
-            // this.SettingsSaving += this.SettingsSavingEventHandler;
-            //
-        }
-        
-        private void SettingChangingEventHandler(object sender, System.Configuration.SettingChangingEventArgs e) {
-            // Add code to handle the SettingChangingEvent event here.
-        }
-        
-        private void SettingsSavingEventHandler(object sender, System.ComponentModel.CancelEventArgs e) {
-            // Add code to handle the SettingsSaving event here.
+﻿namespace CardLib 
+{
+    internal class DeckSettings
+    {
+        public const string ImageExtention = ".jpg";
+        public const string BackImgSource = @"pics\CardBack\back" + ImageExtention;
+        public const string RedJoker = @"pics\CardFront\Red-Joker" + ImageExtention;
+        public const string BlackJoker = @"pics\CardFront\Black-Joker" + ImageExtention;
+
+        public static string FrontImgBaseName(string p)
+        {
+            return @"pics\CardFront\" + p + ImageExtention;
         }
     }
 }

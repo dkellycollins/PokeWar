@@ -7,9 +7,12 @@ namespace CardLib
         private List<Card> deck = new List<Card>();
         private int topCard;
 
-        public CardDeck()
+        /// <summary>
+        /// Creates a new deck of cards.
+        /// </summary>
+        /// <param name="addJokers">If true, two joker cards will be added to the deck.</param>
+        public CardDeck(bool addJokers = true)
         {
-            //Makes a deck
             deck = new List<Card>(52);
             for(int i = 1; i <= 4; i++)
             {
@@ -17,24 +20,71 @@ namespace CardLib
                 {
                     Card c = new Card((Suit)i, a);
                     c.SetImageSources(
-                        DeckSettings.Default.FrontImgBaseName + c.ToString() + DeckSettings.Default.ImageExtention, 
-                        DeckSettings.Default.BackImgSource + DeckSettings.Default.ImageExtention);
+                        DeckSettings.FrontImgBaseName(c.ToString()), 
+                        DeckSettings.BackImgSource);
                     deck.Add(c);
                 }
             }
+
+            if (addJokers)
+            {
+                deck.Add(new Card(Suit.Joker, 0, DeckSettings.RedJoker, DeckSettings.BackImgSource));
+                deck.Add(new Card(Suit.Joker, 0, DeckSettings.BlackJoker, DeckSettings.BackImgSource));
+            }
+
+            topCard = deck.Count - 1;
         }
 
+        /// <summary>
+        /// Draws a single card from the deck.
+        /// </summary>
+        /// <returns>The drawn card.</returns>
         public Card Draw()
         {
-            if (topCard == 0)
-                throw new InvalidOperationException("There are not cards to draw!");
+            if (topCard < 0)
+                throw new InvalidOperationException("There are no cards to draw!");
 
-            Card draw = new Card(deck[topCard]);
-            topCard--;
-            return draw;
+            return new Card(deck[topCard--]);
         }
 
-        public void Shuffle(int count)
+        /// <summary>
+        /// Draws the given number of cards from the deck.
+        /// </summary>
+        /// <param name="numCards">Number of cards to draw.</param>
+        /// <returns>An array of cards.</returns>
+        public Card[] Draw(int numCards)
+        {
+            Card[] cards = new Card[numCards];
+            for(int i = 0; i < numCards; i++)
+            {
+                cards[i] = Draw();
+            }
+            return cards;
+        }
+
+        /// <summary>
+        /// Draws a certain card from the deck.
+        /// </summary>
+        /// <param name="s">Suit of card.</param>
+        /// <param name="r">Rank of card.</param>
+        /// <returns>Drawn card.</returns>
+        public Card Draw(Suit s, int r)
+        {
+            int index = deck.FindIndex(item => item.Suit.Equals(s) && item.Rank.Equals(r));
+
+            //Swap cards so that the one we want is the next one drawn.
+            Card temp = deck[topCard];
+            deck[topCard] = deck[index];
+            deck[index] = temp;
+
+            return Draw();
+        }
+
+        /// <summary>
+        /// Shuffles the deck.
+        /// </summary>
+        /// <param name="count">The number of times to shuffle the deck.</param>
+        public void Shuffle(int count = 1)
         {
             ReturnAllCards();
             System.Random random = new System.Random();
@@ -50,25 +100,21 @@ namespace CardLib
             }
         }
 
+        /// <summary>
+        /// Puts all cards back in play.
+        /// </summary>
         public void ReturnAllCards()
         {
-            topCard = 51;
+            topCard = deck.Count - 1;
         }
 
-        public Card Remove(Suit s, int r)
-        {
-            int index = deck.FindIndex(item => item.Suit.Equals(s) && item.Rank.Equals(r));
-            Card c = deck[index];
-            Card temp = deck[topCard];
-            deck[topCard] = c;
-            deck[index] = temp;
-            return deck[topCard--];
-        }
-
-        //Returns the numbers of cards left in the deck.
+        /// <summary>
+        /// Returns the numbers of cards left in the deck.
+        /// </summary>
+        /// <returns></returns>
         public int Size()
         {
-            return topCard;
+            return topCard + 1;
         }
     }
 }
