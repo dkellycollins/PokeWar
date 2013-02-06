@@ -22,12 +22,12 @@ namespace PokeWar.Engine.Players
         /// <summary>
         /// Name of player.
         /// </summary>
-        public string Name { get; private set; }
+        public string Name { get; internal set; }
 
         /// <summary>
         /// Card that represents this character.
         /// </summary>
-        public Card PlayerCard { get; private set; }
+        public Card PlayerCard { get; internal set; }
 
         /// <summary>
         /// Number of cards this player has.
@@ -76,6 +76,8 @@ namespace PokeWar.Engine.Players
         /// </summary>
         /// <returns></returns>
         public abstract Card PlayCard();
+
+        public abstract int SelectAceCard();
 
         /// <summary>
         /// Handles getting a card from the hand and adding a new card if possible.

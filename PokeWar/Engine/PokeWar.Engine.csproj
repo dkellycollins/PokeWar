@@ -39,8 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IInput.cs" />
     <Compile Include="ImageManager.cs" />
-    <Compile Include="IOInterface.cs" />
+    <Compile Include="IOutput.cs" />
     <Compile Include="Players\ComputerPlayer.cs" />
     <Compile Include="Players\Player.cs" />
     <Compile Include="Players\UserPlayer.cs" />

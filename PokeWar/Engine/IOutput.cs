@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace PokeWar.Engine
 {
-    public interface IOInterface
+    /// <summary>
+    /// Interface to manage output.
+    /// </summary>
+    public interface IOutput
     {
         void UpdateDisplay(string status);
-        int SelectAceCard();
-        int SelectCard();
     }
 }

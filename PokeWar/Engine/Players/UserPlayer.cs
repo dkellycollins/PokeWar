@@ -9,24 +9,31 @@ namespace PokeWar.Engine.Players
 {
     public class UserPlayer : Player
     {
-        private IOInterface io;
+        private IInput _input;
 
-        public UserPlayer(IOInterface io)
+        public UserPlayer(IInput input)
             : base()
         {
-            this.io = io;
+            _input = input;
         }
 
         public override Card PlayCard()
         {
-            displayHand();
-            io.UpdateDisplay("Enter index of card to play: ");
-            return getFromHand(io.SelectCard());
+            string str1 = "Hand:  ";
+            string str2 = "Index: ";
+            int index = 0;
+            foreach(Card card in Hand)
+            {
+                str1 += card.ToString() + " ";
+                str2 += string.Format("## ", index++);
+            }
+            return getFromHand(_input.SelectCard(str1 + "\n" + str2 + 
+                "\nEnter your selection: "));
         }
 
-        private void displayHand()
+        public override int SelectAceCard()
         {
-            
+            return _input.SelectAceCard("Select an ace card (enter 1 - 4): ");
         }
     }
 }
