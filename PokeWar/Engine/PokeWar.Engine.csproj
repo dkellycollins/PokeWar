@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ImageManager.cs" />
     <Compile Include="IOInterface.cs" />
     <Compile Include="Players\ComputerPlayer.cs" />
     <Compile Include="Players\Player.cs" />
@@ -51,6 +52,9 @@
       <Project>{e3d4c823-52f1-46ea-9a44-488c3793206d}</Project>
       <Name>CardLib</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CodeMap.dgml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
