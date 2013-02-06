@@ -22,17 +22,17 @@ namespace PokeWar.Engine
         public ImageManager ImageManager { get; private set; }
 
         private CardDeck _deck;
-        private List<Card> fieldCards;
+        private List<Card> _fieldCards;
         private IOutput _output;
 
         public PokeWarEngine(Player p1, Player p2, IOutput output)
         {
-            _deck = new CardDeck();
             Player1 = p1;
             Player2 = p2;
-            _output = output;
             ImageManager = new ImageManager();
-            fieldCards = new List<Card>();
+            _output = output;
+            _deck = new CardDeck();
+            _fieldCards = new List<Card>();
         }
 
         /// <summary>
@@ -48,55 +48,55 @@ namespace PokeWar.Engine
                 //Each player selects a card.
                 Card player1Card = Player1.PlayCard();
                 Card player2Card = Player2.PlayCard();
+                _fieldCards.Add(player1Card);
+                _fieldCards.Add(player2Card);
 
-                _output.UpdateDisplay(string.Format("{0} played {1} \n{2} played {3}", Player1.Name, player1Card.ToString(), Player2.Name, player2Card.ToString()));
+                _output.UpdateDisplay(string.Format("{0} played {1}", Player1.Name, player1Card.ToString()));
+                _output.UpdateDisplay(string.Format("{0} played {1}", Player2.Name, player2Card.ToString()));
 
                 int result = calculateResult(player1Card, player2Card);
 
-                if (result == 0)
+                if (result == 3)
                 {
                     //Joker played clear all cards.
                     _output.UpdateDisplay("Team Rocket is blasting off again!");
-                    fieldCards.Clear();
+                    _fieldCards.Clear();
                 }
-                else if (result == 3)
+                else if (result == 0)
                 {
                     //Ranks are equal. Start/Continue war.
                     _output.UpdateDisplay("War! Select three cards.");
-
-                    fieldCards.Add(player1Card);
-                    fieldCards.Add(player2Card);
                     for (int i = 0; i < 3; i++)
                     {
-                        fieldCards.Add(Player1.PlayCard());
-                        fieldCards.Add(Player2.PlayCard());
+                        _fieldCards.Add(Player1.PlayCard());
+                        _fieldCards.Add(Player2.PlayCard());
                     }
                 }
                 else if (result == 1)
                 {
+                    finishRound(Player1, player1Card, player2Card);
                     //Player1 wins gets all cards on the field.
-                    _output.UpdateDisplay(string.Format("{0} wins the round.", Player1.Name));
-
-                    Player1.Deal(player1Card);
-                    Player1.Deal(player2Card);
-                    Player1.Deal(fieldCards.ToArray());
-                    fieldCards.Clear();
                 }
                 else
                 {
+                    finishRound(Player2, player1Card, player2Card);
                     //Player2 wins gets all cards on the field.
-                    _output.UpdateDisplay(string.Format("{0} wins the round.", Player2.Name));
-
-                    Player2.Deal(player1Card);
-                    Player2.Deal(player2Card);
-                    Player2.Deal(fieldCards.ToArray());
-                    fieldCards.Clear();
                 }
 
-                _output.UpdateDisplay(string.Format("{0} has {1} cards. \n{2} has {3} cards.", Player1.Name, Player1.NumberOfCards, Player2.Name, Player2.NumberOfCards));
+                _output.UpdateDisplay(string.Format("{0} has {1} cards.", Player1.Name, Player1.NumberOfCards));
+                _output.UpdateDisplay(string.Format("{0} has {1} cards.", Player2.Name, Player2.NumberOfCards));
             }
 
             endGame(); //handle win.
+            cleanup();
+        }
+
+        private void finishRound(Player player, Card p1Card, Card p2Card)
+        {
+            _output.UpdateDisplay(string.Format("{0} wins the round.", player.Name));
+
+            player.Deal(_fieldCards.ToArray());
+            _fieldCards.Clear();
         }
 
         private void setup()
@@ -105,26 +105,26 @@ namespace PokeWar.Engine
             _deck.Shuffle(3);
 
             //Splits the deck between the players.
-            while(_deck.Size() > 1)
+            while(_deck.Size() > 0)
             {
-                Card card1 = _deck.Draw();
-                card1.FaceUp = true;
-                Player1.Deal(card1);
-                Card card2 = _deck.Draw();
-                card2.FaceUp = true;
-                Player2.Deal(card2);
+                Card card = _deck.Draw();
+                card.FaceUp = true;
+                if (_deck.Size() % 2 == 0)
+                    Player1.Deal(card);
+                else
+                    Player2.Deal(card);
             }
         }
 
         //Determines the winner from the two cards and returns a code.
-        //0: A joker was played.
+        //3: A joker was played.
         //1: Player1 won.
-        //2: Player2 won.
-        //3: Players tied.
+        //-1: Player2 won.
+        //0: Players tied.
         private int calculateResult(Card player1Card, Card player2Card)
         {
             if (player1Card.Suit == Suit.Joker || player2Card.Suit == Suit.Joker)
-                return 0;
+                return 3;
 
             int player1Rank = player1Card.Rank;
             int player2Rank = player2Card.Rank;
@@ -133,6 +133,7 @@ namespace PokeWar.Engine
                 player1Rank++;
             if (player2Card.Suit == Player2.PlayerCard.Suit)
                 player2Rank++;
+
             switch (player1Card.Suit)
             {
                 case Suit.Club:
@@ -155,12 +156,7 @@ namespace PokeWar.Engine
                     break;
             }
 
-            if (player1Rank > player2Rank)
-                return 1;
-            else if (player1Rank < player2Rank)
-                return 2;
-            else
-                return 3;
+            return player1Rank - player2Rank;
         }
 
         private void endGame()
@@ -192,11 +188,12 @@ namespace PokeWar.Engine
             Player2.PlayerCard = aces[player2Selection];
         }
 
-        public void Cleanup()
+        private void cleanup()
         {
-            Player1.Hand.Equals(null);
-            Player2.Hand.Equals(null);
+            Player1.Reset();
+            Player2.Reset();
             _deck.ReturnAllCards();
+            //ImageManager.Reset();
         }
     }
 }

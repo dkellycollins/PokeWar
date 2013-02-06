@@ -71,6 +71,13 @@ namespace PokeWar.Engine.Players
                 Deal(card);
         }
 
+        public void Reset()
+        {
+            _deck.Clear();
+            Hand.Clear();
+            PlayerCard = null;
+        }
+
         /// <summary>
         /// Gets the card the player wants to play.
         /// </summary>
