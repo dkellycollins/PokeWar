@@ -11,8 +11,8 @@ namespace PokeWar.Engine.Players
     {
         private IOInterface io;
 
-        public UserPlayer(string name, Card card, IOInterface io)
-            : base(name, card)
+        public UserPlayer(IOInterface io)
+            : base()
         {
             this.io = io;
         }

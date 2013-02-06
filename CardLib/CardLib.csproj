@@ -50,6 +50,7 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="CodeMap.dgml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="pics\CardBack\back.jpg">

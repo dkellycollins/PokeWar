@@ -43,13 +43,8 @@ namespace PokeWar.Engine.Players
         /// <summary>
         /// Creates a new player.
         /// </summary>
-        /// <param name="p">Name of the player.</param>
-        /// <param name="card">Card for this player.</param>
-        public Player(string p, Card card)
+        public Player()
         {
-            Name = p;
-            PlayerCard = card;
-
             _deck = new Stack<Card>();
             Hand = new List<Card>(HAND_SIZE);
         }
