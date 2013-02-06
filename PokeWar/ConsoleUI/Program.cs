@@ -12,7 +12,7 @@ namespace PokeWar.ConsoleUI
     {
         static void Main(string[] args)
         {
-            UserPlayer player1 = new UserPlayer(new ConsoleInput());
+            DebugPlayer player1 = new DebugPlayer(new ConsoleInput());
             ComputerPlayer player2 = new ComputerPlayer();
             
             PokeWarEngine game = new PokeWarEngine(player1, player2, new ConsoleOutput());

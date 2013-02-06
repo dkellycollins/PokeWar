@@ -8,13 +8,13 @@ using CardLib;
 namespace PokeWar.Engine.Players
 {
     /// <summary>
-    /// Basic user player. Does not check input.
+    /// A user player that allows for extra input.
     /// </summary>
-    public class UserPlayer : Player
+    public class DebugPlayer : Player
     {
         private IInput _input;
 
-        public UserPlayer(IInput input)
+        public DebugPlayer(IInput input)
             : base()
         {
             _input = input;

@@ -7,6 +7,9 @@ using CardLib;
 
 namespace PokeWar.Engine.Players
 {
+    /// <summary>
+    /// Basic computer player always selects the first card in the hand.
+    /// </summary>
     public class ComputerPlayer : Player
     {
         public override Card PlayCard()

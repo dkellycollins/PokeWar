@@ -43,6 +43,8 @@
     <Compile Include="ImageManager.cs" />
     <Compile Include="IOutput.cs" />
     <Compile Include="Players\ComputerPlayer.cs" />
+    <Compile Include="Players\DebugPlayer.cs" />
+    <Compile Include="Players\EasyPlayer.cs" />
     <Compile Include="Players\Player.cs" />
     <Compile Include="Players\UserPlayer.cs" />
     <Compile Include="PokeWarEngine.cs" />
