@@ -19,7 +19,6 @@ namespace PokeWar.Engine
 
         public Player Player1 { get; private set; }
         public Player Player2 { get; private set; }
-        public ImageManager ImageManager { get; private set; }
 
         private CardDeck _deck;
         private List<Card> _fieldCards;
@@ -29,7 +28,6 @@ namespace PokeWar.Engine
         {
             Player1 = p1;
             Player2 = p2;
-            ImageManager = new ImageManager();
             _output = output;
             _deck = new CardDeck();
             _fieldCards = new List<Card>();
@@ -188,7 +186,6 @@ namespace PokeWar.Engine
             Player1.Reset();
             Player2.Reset();
             _deck.ReturnAllCards();
-            //ImageManager.Reset();
         }
     }
 }

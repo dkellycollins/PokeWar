@@ -40,7 +40,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IInput.cs" />
-    <Compile Include="ImageManager.cs" />
     <Compile Include="IOutput.cs" />
     <Compile Include="Players\ComputerPlayer.cs" />
     <Compile Include="Players\DebugPlayer.cs" />

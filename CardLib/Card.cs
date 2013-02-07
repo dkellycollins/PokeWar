@@ -36,48 +36,6 @@ namespace CardLib
         public bool FaceUp { get; set; }
 
         /// <summary>
-        /// Returns the face up image of this card. Note that the image is not cached. Everytime this is called is an io operation.
-        /// </summary>
-        public Image FrontImage
-        {
-            get
-            {
-                try
-                {
-                    return Image.FromFile(frontImgSource);
-                }
-                catch
-                {
-                    return null;
-                    //return DeckSettings.ErrorImage;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Returns the face down image of this card. Note that the image is not cached. Everytime this is called is an io operation.
-        /// </summary>
-        public Image BackImage
-        {
-            get
-            {
-                try
-                {
-                    return Image.FromFile(backImgSource);
-                }
-                catch
-                {
-                    return null;
-                    //return DeckSettings.ErrorImage;
-                }
-            }
-        }
-
-        //Holds the location of the images.
-        private string frontImgSource;
-        private string backImgSource;
-
-        /// <summary>
         /// Crates a card with FaceUp = false.
         /// </summary>
         /// <param name="s">The Suit</param>
@@ -87,24 +45,19 @@ namespace CardLib
             Suit = s;
             Rank = r;
             FaceUp = false;
-            frontImgSource = null;
-            backImgSource = null;
         }
 
         /// <summary>
-        /// Creates a card with the images.
+        /// Creates a card.
         /// </summary>
         /// <param name="s">Suit</param>
         /// <param name="r">Rank</param>
-        /// <param name="f">Front Image URL</param>
-        /// <param name="b">Back Image URL</param>
-        public Card(Suit s, int r, string f, string b)
+        /// <param name="faceup">If this card is face up.</param>
+        public Card(Suit s, int r, bool faceup)
         {
             Suit = s;
             Rank = r;
-            FaceUp = false;
-            frontImgSource = f;
-            backImgSource = b;
+            FaceUp = faceup;
         }
 
         /// <summary>
@@ -116,19 +69,6 @@ namespace CardLib
             this.Suit = c.Suit;
             this.Rank = c.Rank;
             this.FaceUp = c.FaceUp;
-            this.frontImgSource = c.frontImgSource;
-            this.backImgSource = c.backImgSource;
-        }
-
-        /// <summary>
-        /// Sets the source for the images.
-        /// </summary>
-        /// <param name="front">Front image URL</param>
-        /// <param name="back">Back image URL</param>
-        internal void SetImageSources(string front, string back)
-        {
-            frontImgSource = front;
-            backImgSource = back;
         }
 
 #region Overrides

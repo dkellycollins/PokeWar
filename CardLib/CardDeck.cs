@@ -19,17 +19,14 @@ namespace CardLib
                 for(int a = 1; a <= 13; a++)
                 {
                     Card c = new Card((Suit)i, a);
-                    c.SetImageSources(
-                        DeckSettings.FrontImgBaseName(c.ToString()), 
-                        DeckSettings.BackImgSource);
                     deck.Add(c);
                 }
             }
 
             if (addJokers)
             {
-                deck.Add(new Card(Suit.Joker, 0, DeckSettings.RedJoker, DeckSettings.BackImgSource));
-                deck.Add(new Card(Suit.Joker, 0, DeckSettings.BlackJoker, DeckSettings.BackImgSource));
+                deck.Add(new Card(Suit.Joker, 0));
+                deck.Add(new Card(Suit.Joker, 0));
             }
 
             topCard = deck.Count - 1;
@@ -44,7 +41,7 @@ namespace CardLib
             if (topCard < 0)
                 throw new InvalidOperationException("There are no cards to draw!");
 
-            return new Card(deck[topCard--]);
+            return deck[topCard--];
         }
 
         /// <summary>
@@ -101,11 +98,12 @@ namespace CardLib
         }
 
         /// <summary>
-        /// Puts all cards back in play.
+        /// Puts all cards back in play and set FaceUp = false for all cards.
         /// </summary>
         public void ReturnAllCards()
         {
             topCard = deck.Count - 1;
+            deck.ForEach((x) => x.FaceUp = false);
         }
 
         /// <summary>
