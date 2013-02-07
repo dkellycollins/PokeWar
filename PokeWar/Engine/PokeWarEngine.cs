@@ -50,19 +50,21 @@ namespace PokeWar.Engine
                 Card player2Card = Player2.PlayCard();
                 _fieldCards.Add(player1Card);
                 _fieldCards.Add(player2Card);
+                int p1Rank = 0;
+                int p2Rank = 0;
 
-                _output.UpdateDisplay(string.Format("{0} played {1}", Player1.Name, player1Card.ToString()));
-                _output.UpdateDisplay(string.Format("{0} played {1}", Player2.Name, player2Card.ToString()));
+                bool rocket = calculateRanks(player1Card, player2Card, out p1Rank, out p2Rank);
 
-                int result = calculateResult(player1Card, player2Card);
+                _output.UpdateDisplay(string.Format("{0} played {1} ({2})", Player1.Name, player1Card.ToString(), p1Rank));
+                _output.UpdateDisplay(string.Format("{0} played {1} ({2})", Player2.Name, player2Card.ToString(), p2Rank));
 
-                if (result == 3)
+                if (rocket)
                 {
                     //Joker played clear all cards.
                     _output.UpdateDisplay("Team Rocket is blasting off again!");
                     _fieldCards.Clear();
                 }
-                else if (result == 0)
+                else if (p1Rank == p2Rank)
                 {
                     //Ranks are equal. Start/Continue war.
                     _output.UpdateDisplay("War! Select three cards.");
@@ -72,7 +74,7 @@ namespace PokeWar.Engine
                         _fieldCards.Add(Player2.PlayCard());
                     }
                 }
-                else if (result == 1)
+                else if (p1Rank > p2Rank)
                 {
                     finishRound(Player1, player1Card, player2Card);
                     //Player1 wins gets all cards on the field.
@@ -117,17 +119,10 @@ namespace PokeWar.Engine
         }
 
         //Determines the winner from the two cards and returns a code.
-        //3: A joker was played.
-        //1: Player1 won.
-        //-1: Player2 won.
-        //0: Players tied.
-        private int calculateResult(Card player1Card, Card player2Card)
+        private bool calculateRanks(Card player1Card, Card player2Card, out int player1Rank, out int player2Rank)
         {
-            if (player1Card.Suit == Suit.Joker || player2Card.Suit == Suit.Joker)
-                return 3;
-
-            int player1Rank = player1Card.Rank;
-            int player2Rank = player2Card.Rank;
+            player1Rank = player1Card.Rank;
+            player2Rank = player2Card.Rank;
 
             if (player1Card.Suit == Player1.PlayerCard.Suit)
                 player1Rank++;
@@ -156,7 +151,7 @@ namespace PokeWar.Engine
                     break;
             }
 
-            return player1Rank - player2Rank;
+            return (player1Card.Suit == Suit.Joker || player2Card.Suit == Suit.Joker);
         }
 
         private void endGame()

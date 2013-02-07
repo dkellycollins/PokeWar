@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="ConsoleInput.cs" />
     <Compile Include="ConsoleOutput.cs" />
+    <Compile Include="IOHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

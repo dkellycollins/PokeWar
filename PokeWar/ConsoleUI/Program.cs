@@ -12,15 +12,23 @@ namespace PokeWar.ConsoleUI
     {
         static void Main(string[] args)
         {
-            DebugPlayer player1 = new DebugPlayer(new ConsoleInput());
+#if DEBUG
+            IOHelper ioHelper = new IOHelper("Log.txt");
+#else
+            IOHelper ioHelper = new IOHelper("Log.txt");
+#endif
+
+            DebugPlayer player1 = new DebugPlayer(new ConsoleInput(ioHelper));
             ComputerPlayer player2 = new ComputerPlayer();
             
-            PokeWarEngine game = new PokeWarEngine(player1, player2, new ConsoleOutput());
+            PokeWarEngine game = new PokeWarEngine(player1, player2, new ConsoleOutput(ioHelper));
 
-            while (true)
+            do
             {
                 game.Play();
-            }
+            } while (ioHelper.ReadChar("Play again? (y/n) ", new char[] { 'y', 'n' }) == 'y');
+
+            ioHelper.Dispose();
         }
     }
 }

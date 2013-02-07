@@ -9,9 +9,16 @@ namespace PokeWar.ConsoleUI
 {
     public class ConsoleOutput : IOutput
     {
+        private IOHelper _ioHelper;
+
+        public ConsoleOutput(IOHelper ioHelper)
+        {
+            _ioHelper = ioHelper;
+        }
+
         public void UpdateDisplay(string status)
         {
-            Console.Out.WriteLine(status);
+            _ioHelper.WriteString(status);
         }
     }
 }

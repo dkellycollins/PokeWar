@@ -9,16 +9,21 @@ namespace PokeWar.ConsoleUI
 {
     public class ConsoleInput : IInput
     {
+        private IOHelper _ioHelper;
+
+        public ConsoleInput(IOHelper ioHelper)
+        {
+            _ioHelper = ioHelper;
+        }
+
         public int SelectAceCard(string msg)
         {
-            Console.Out.Write(msg);
-            return Int32.Parse(Console.In.ReadLine());
+            return _ioHelper.ReadInt(msg, 0, 3); 
         }
 
         public int SelectCard(string msg)
         {
-            Console.Out.Write(msg);
-            return Int32.Parse(Console.In.ReadLine());
+            return _ioHelper.ReadInt(msg, 0, 5);
         }
     }
 }
