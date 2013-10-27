@@ -1,4 +1,8 @@
-Note: This game is going to be revivied and reworked to be a Windows 8 app.
+Note: Each code base live in it's own branch. No code is actually in the master branch.
+
+Code bases:
+* Javascript - the game logic is coded entirely in javascript. The ui is done through Html and Css
+* C# - C# has two dlls that form the base of the game, CardLib and PokeWar.Engine. Ui are built on top of these.
 
 Credit:
   Original Art: Nintendo
